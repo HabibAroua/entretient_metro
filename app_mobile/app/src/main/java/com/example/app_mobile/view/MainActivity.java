@@ -18,11 +18,12 @@ import com.example.app_mobile.route.Route;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+{
     Button bt;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bt = (Button) findViewById(R.id.bt1);
@@ -32,22 +33,28 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this,Route.URL_LOGIN,Toast.LENGTH_LONG).show();
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 StringRequest postRequest = new StringRequest(Request.Method.POST, Route.URL_LOGIN,
-                        new Response.Listener<String>() {
+                        new Response.Listener<String>()
+                        {
                             @Override
-                            public void onResponse(String response) {
+                            public void onResponse(String response)
+                            {
                                 // response
                                 Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
                                 if (response.equals("the name is Safa")) {
                                     Toast.makeText(MainActivity.this, "Good", Toast.LENGTH_LONG).show();
-                                } else {
+                                }
+                                else
+                                    {
                                     Toast.makeText(MainActivity.this, "Bad", Toast.LENGTH_LONG).show();
 
                                 }
                             }
                         },
-                        new Response.ErrorListener() {
+                        new Response.ErrorListener()
+                        {
                             @Override
-                            public void onErrorResponse(VolleyError error) {
+                            public void onErrorResponse(VolleyError error)
+                            {
                                 Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
                                 // error
                             }
