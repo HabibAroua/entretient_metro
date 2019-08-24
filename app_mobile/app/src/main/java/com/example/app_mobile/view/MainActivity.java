@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
                                         @Override
                                         public void onErrorResponse(VolleyError error)
                                         {
-                                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MainActivity.this, "Le serveur est desactivé", Toast.LENGTH_LONG).show();
                                             // error
                                         }
                                     }
