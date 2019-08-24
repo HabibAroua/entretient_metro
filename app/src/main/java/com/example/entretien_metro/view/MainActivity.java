@@ -1,7 +1,6 @@
-package com.example.entretien_metro;
+package com.example.entretien_metro.view;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +12,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.entretien_metro.R;
+import com.example.entretien_metro.route.Route;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +30,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url = "http://192.168.1.8/blog/";
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                StringRequest postRequest = new StringRequest(Request.Method.POST, Route.URL_LOGIN,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -55,7 +55,8 @@ public class MainActivity extends Activity {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<String, String>();
-                        params.put("name", "Safa");
+                        params.put("login", "SafaMiri");
+                        params.put("password","azerty");
                         return params;
                     }
                 };
