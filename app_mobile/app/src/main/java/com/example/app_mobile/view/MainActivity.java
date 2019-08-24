@@ -2,6 +2,8 @@ package com.example.app_mobile.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,7 +20,7 @@ import com.example.app_mobile.route.Route;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends Activity
+public class MainActivity extends AppCompatActivity
 {
     Button bt;
     @Override
