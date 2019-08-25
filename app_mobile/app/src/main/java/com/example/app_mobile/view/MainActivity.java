@@ -83,12 +83,13 @@ public class MainActivity extends AppCompatActivity
                                         public void onErrorResponse(VolleyError error)
                                         {
                                             Toast.makeText(MainActivity.this, "Le serveur est desactivé", Toast.LENGTH_LONG).show();
-                                            // error
                                         }
                                     }
-                            ) {
+                            )
+                            {
                                 @Override
-                                protected Map<String, String> getParams() {
+                                protected Map<String, String> getParams()
+                                {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put("login", txtLogin.getText().toString());
                                     params.put("password",txtPassword.getText().toString());

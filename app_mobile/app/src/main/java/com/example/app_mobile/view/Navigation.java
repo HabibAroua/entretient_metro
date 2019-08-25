@@ -1,5 +1,6 @@
 package com.example.app_mobile.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,14 +13,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.app_mobile.R;
+import com.example.app_mobile.jakson.JSON1;
+import com.example.app_mobile.jakson.Main;
+import com.example.app_mobile.route.Route;
+
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Navigation extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+{
+    Button bt;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,6 +64,29 @@ public class Navigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        bt=(Button)findViewById(R.id.btValider);
+        bt.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                try
+                {
+                    Main m = new Main();
+                    Toast.makeText(Navigation.this,Route.URL_ENTRETIRN,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,"SafaMiri", Navigation.this), Toast.LENGTH_SHORT).show();
+                    List<JSON1> list=m.getListEntretien();
+                    for(int i=0 ; i<list.size() ; i++)
+                    {
+                        Toast.makeText(Navigation.this,list.get(i).toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        });
     }
 
     @Override
