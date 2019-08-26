@@ -15,13 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.jakson.Main;
@@ -38,6 +31,8 @@ public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     Button bt;
+    public static String LoginValue;
+    public static List<JSON1> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +59,9 @@ public class Navigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Intent i=getIntent();
+        LoginValue= i.getStringExtra("value1");
+
         bt=(Button)findViewById(R.id.btValider);
         bt.setOnClickListener(new View.OnClickListener()
         {
@@ -74,12 +72,16 @@ public class Navigation extends AppCompatActivity
                 {
                     Main m = new Main();
                     Toast.makeText(Navigation.this,Route.URL_ENTRETIRN,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,"SafaMiri", Navigation.this), Toast.LENGTH_SHORT).show();
-                    List<JSON1> list=m.getListEntretien();
+                    Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this), Toast.LENGTH_SHORT).show();
+                    list=m.getListEntretien();
                     for(int i=0 ; i<list.size() ; i++)
                     {
                         Toast.makeText(Navigation.this,list.get(i).toString(),Toast.LENGTH_SHORT).show();
                     }
+                    Toast.makeText(Navigation.this,"The value of login est "+Navigation.LoginValue,Toast.LENGTH_SHORT).show();
+                    Intent i =new Intent(Navigation.this,Notification.class);
+
+                    startActivity(i);
                 }
                 catch (Exception e)
                 {
@@ -87,6 +89,7 @@ public class Navigation extends AppCompatActivity
                 }
             }
         });
+
     }
 
     @Override
@@ -128,6 +131,7 @@ public class Navigation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 

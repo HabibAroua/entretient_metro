@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
 
                                                     break;
                                                 case '2' : Intent i =new Intent(MainActivity.this,Navigation.class);
+                                                            i.putExtra("value1",txtLogin.getText().toString());
                                                            startActivity(i);
                                                     break;
                                                 case '3' : Toast.makeText(MainActivity.this,"Mot de passe inccorect",Toast.LENGTH_SHORT).show();
