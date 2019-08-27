@@ -8,4 +8,10 @@
     tools:context=".view.Navigation"
     tools:showIn="@layout/app_bar_navigation">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:text="Bienvenue"/>
+
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.app_mobile.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity
     Button bt;
     EditText txtLogin , txtPassword;
     private String res="";
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -56,6 +59,9 @@ public class MainActivity extends AppCompatActivity
                         }
                         else
                         {
+                            progressDialog = ProgressDialog.show(MainActivity.this
+                                    ,"En train de connecter","S'il vous plaît, attendez...",false,false);
+
                             RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                             StringRequest postRequest = new StringRequest(Request.Method.POST, Route.URL_LOGIN,
                                     new Response.Listener<String>()
@@ -65,14 +71,14 @@ public class MainActivity extends AppCompatActivity
                                         {
                                             switch (response.charAt(1))
                                             {
-                                                case '1' : Toast.makeText(MainActivity.this,"Utilisateur n'existe pas",Toast.LENGTH_SHORT).show();
+                                                case '1' : progressDialog.dismiss(); Toast.makeText(MainActivity.this,"Utilisateur n'existe pas",Toast.LENGTH_SHORT).show();
 
                                                     break;
-                                                case '2' : Intent i =new Intent(MainActivity.this,Navigation.class);
+                                                case '2' : progressDialog.dismiss(); Intent i =new Intent(MainActivity.this,Navigation.class);
                                                             i.putExtra("value1",txtLogin.getText().toString());
                                                            startActivity(i);
                                                     break;
-                                                case '3' : Toast.makeText(MainActivity.this,"Mot de passe inccorect",Toast.LENGTH_SHORT).show();
+                                                case '3' : progressDialog.dismiss(); Toast.makeText(MainActivity.this,"Mot de passe inccorect",Toast.LENGTH_SHORT).show();
                                                         break;
                                             }
 
@@ -84,6 +90,8 @@ public class MainActivity extends AppCompatActivity
                                         public void onErrorResponse(VolleyError error)
                                         {
                                             Toast.makeText(MainActivity.this, "Le serveur est desactivé", Toast.LENGTH_LONG).show();
+                                            //progressDialog.dismiss();
+
                                         }
                                     }
                             )
@@ -98,6 +106,7 @@ public class MainActivity extends AppCompatActivity
                                 }
                             };
                             queue.add(postRequest);
+                            progressDialog.dismiss();
                         }
                     }
                 }

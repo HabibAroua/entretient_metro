@@ -93,21 +93,7 @@ public class Notification extends AppCompatActivity
                         Toast.makeText(getApplicationContext(), "The value is " + Navigation.list.get(i), Toast.LENGTH_SHORT).show();
                     }
 
-                    try {
-                        GMailSender sender = new GMailSender("habibha.aroua82@gmail.com",
-                                "habib.aroua@hotmail.framour88");
-                        sender.sendMail("Hello from JavaMail", "Body from JavaMail",
-                                "habibha.aroua82@gmail.com", "habib.aroua@sesame.com.tn");
-                        Toast.makeText(Notification.this, "Mail sent", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        //Log.e("SendMail", e.getMessage(), e);
-                        Toast.makeText(Notification.this, "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
                     }
-                }
-
-
                 });
             return view1;
 

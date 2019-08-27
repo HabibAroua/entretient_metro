@@ -62,6 +62,7 @@ public class Navigation extends AppCompatActivity
         Intent i=getIntent();
         LoginValue= i.getStringExtra("value1");
 
+        /*
         bt=(Button)findViewById(R.id.btValider);
         bt.setOnClickListener(new View.OnClickListener()
         {
@@ -89,6 +90,7 @@ public class Navigation extends AppCompatActivity
                 }
             }
         });
+        */
 
     }
 
@@ -130,10 +132,32 @@ public class Navigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera)
+        {
+            try
+            {
+                Main m = new Main();
+                Toast.makeText(Navigation.this,Route.URL_ENTRETIRN,Toast.LENGTH_SHORT).show();
+                Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this), Toast.LENGTH_SHORT).show();
+                list=m.getListEntretien();
+                for(int i=0 ; i<list.size() ; i++)
+                {
+                    Toast.makeText(Navigation.this,list.get(i).toString(),Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(Navigation.this,"The value of login est "+Navigation.LoginValue,Toast.LENGTH_SHORT).show();
+                Intent i =new Intent(Navigation.this,Notification.class);
 
+                startActivity(i);
+            }
+            catch (Exception e)
+            {
+
+            }
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }
+        else
+            if (id == R.id.nav_gallery)
+            {
 
         } else if (id == R.id.nav_slideshow) {
 
