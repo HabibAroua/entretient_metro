@@ -1,6 +1,7 @@
 package com.example.app_mobile.mailing;
 
 import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -84,41 +85,62 @@ public class SendEmail
 
     private void defProp()
     {
+
+
+        this.props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         this.props.put("mail.smtp.starttls.enable", "true");
         this.props.put("mail.smtp.auth", "true");
         this.props.put("mail.smtp.host", "smtp.gmail.com");
+        this.props.put("mail.smtp.port", "587"); //465 /888
+
+        /*
+        this.props.put("mail.smtp.host", "smtp.gmail.com");
+        this.props.put("mail.smtp.socketFactory.port", "587");
+        this.props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        this.props.put("mail.smtp.auth", "true");
         this.props.put("mail.smtp.port", "587");
+        this.props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        */
+
     }
 
     public Boolean send()
     {
-        this.defProp();
-        final String username = this.myEmail;
-        final String password = this.myPassword;
-        Session session = Session.getInstance(props,new javax.mail.Authenticator()
-        {
-            protected PasswordAuthentication getPasswordAuthentication()
-            {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
         try
         {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(this.myEmail));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(this.receiverMail));
-            message.setSubject(this.subject);
-            message.setText(this.text);
+            this.defProp();
+            final String username = this.myEmail;
+            final String password = this.myPassword;
+            Session session = Session.getInstance(props, new javax.mail.Authenticator()
+            {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
 
-            Transport.send(message);
-            System.out.println("Done");
-            return true;
+
+            try
+            {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(Config.EMAIL));
+                message.setRecipients(Message.RecipientType.TO,
+                        InternetAddress.parse(this.receiverMail));
+               message.setSubject(this.subject);
+               message.setText("sending you mail");
+
+               Transport.send(message);
+                System.out.println("Done");
+                return true;
+            }
+            catch (/*MessagingException e */Exception e)
+            {
+                throw new RuntimeException(e);
+
+            }
         }
-        catch (MessagingException e)
+        catch (Exception e)
         {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 }

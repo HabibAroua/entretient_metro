@@ -1,1 +1,1 @@
-include ':app', ':activation', ':mail', ':jackson-all-1.9.0', ':jackson-annotations-2.10.0.pr1', ':jackson-core-2.10.0.pr1', ':jackson-databind-2.10.0.pr1'
+include ':app', ':activation', ':mail', ':jackson-all-1.9.0', ':jackson-annotations-2.10.0.pr1', ':jackson-core-2.10.0.pr1', ':jackson-databind-2.10.0.pr1', ':additionnal'

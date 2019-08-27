@@ -3,6 +3,7 @@ package com.example.app_mobile.view;
 import android.content.ClipData;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
+import com.example.app_mobile.mailing.GMailSender;
+import com.example.app_mobile.mailing.SendEmail;
 
 import java.util.ArrayList;
 
@@ -84,15 +87,28 @@ public class Notification extends AppCompatActivity
 
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    Toast.makeText(getApplicationContext(),"Hello "+txtID.getText().toString(),Toast.LENGTH_SHORT).show();
-                    for(int i=0 ;i<Navigation.list.size() ; i++)
-                    {
-                        Toast.makeText(getApplicationContext(),"The value is "+Navigation.list.get(i),Toast.LENGTH_SHORT).show();
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "Hello " + txtID.getText().toString(), Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < Navigation.list.size(); i++) {
+                        Toast.makeText(getApplicationContext(), "The value is " + Navigation.list.get(i), Toast.LENGTH_SHORT).show();
+                    }
+
+                    try {
+                        GMailSender sender = new GMailSender("habibha.aroua82@gmail.com",
+                                "habib.aroua@hotmail.framour88");
+                        sender.sendMail("Hello from JavaMail", "Body from JavaMail",
+                                "habibha.aroua82@gmail.com", "habib.aroua@sesame.com.tn");
+                        Toast.makeText(Notification.this, "Mail sent", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        //Log.e("SendMail", e.getMessage(), e);
+                        Toast.makeText(Notification.this, "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+
                     }
                 }
-            });
+
+
+                });
             return view1;
 
         }
