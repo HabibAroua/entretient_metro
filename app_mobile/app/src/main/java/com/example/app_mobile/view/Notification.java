@@ -19,6 +19,7 @@ import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.mailing.GMailSender;
 import com.example.app_mobile.mailing.SendEmail;
+import com.example.app_mobile.storage.Storage;
 
 import java.util.ArrayList;
 
@@ -26,15 +27,16 @@ public class Notification extends AppCompatActivity
 {
     Button bt;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         try
         {
             final ArrayList<JSON1> Items = new ArrayList<JSON1>();
-            for (int i = 0; i < Navigation.list.size(); i++)
+            for (int i = 0; i < Storage.list.size(); i++)
             {
-                Items.add(Navigation.list.get(i));
+                Items.add(Storage.list.get(i));
             }
             final MyCustomAdapter myadpter = new MyCustomAdapter(Items);
 
@@ -43,8 +45,9 @@ public class Notification extends AppCompatActivity
         }
         catch (Exception e)
         {
-            //Intent i=new Intent(Notification.this,Navigation.class);
-            //startActivity(i);
+            Toast.makeText(Notification.this,"please try again",Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(Notification.this,Navigation.class);
+            startActivity(i);
         }
     }
 
@@ -52,9 +55,9 @@ public class Notification extends AppCompatActivity
     class MyCustomAdapter extends BaseAdapter
     {
         ArrayList<JSON1> Items=new ArrayList<JSON1>();
-        MyCustomAdapter(ArrayList<JSON1> Items ) {
+        MyCustomAdapter(ArrayList<JSON1> Items )
+        {
             this.Items=Items;
-
         }
 
 
@@ -64,13 +67,14 @@ public class Notification extends AppCompatActivity
         }
 
         @Override
-        public String getItem(int position) {
+        public String getItem(int position)
+        {
             return Items.get(position).getId();
-
         }
 
         @Override
-        public long getItemId(int position) {
+        public long getItemId(int position)
+        {
             return  position;
         }
 
@@ -97,8 +101,8 @@ public class Notification extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "Hello " + txtID.getText().toString(), Toast.LENGTH_SHORT).show();
-                    for (int i = 0; i < Navigation.list.size(); i++) {
-                        Toast.makeText(getApplicationContext(), "The value is " + Navigation.list.get(i), Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < Storage.list.size(); i++) {
+                        Toast.makeText(getApplicationContext(), "The value is " + Storage.list.get(i), Toast.LENGTH_SHORT).show();
                     }
 
                     }

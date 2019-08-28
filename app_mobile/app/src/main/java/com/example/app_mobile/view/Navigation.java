@@ -20,6 +20,7 @@ import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.jakson.JSON2;
 import com.example.app_mobile.jakson.Main;
 import com.example.app_mobile.route.Route;
+import com.example.app_mobile.storage.Storage;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -32,9 +33,7 @@ public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     Button bt;
-    public static String LoginValue;
-    public static List<JSON1> list;
-    public static List<JSON2> list1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,7 +61,11 @@ public class Navigation extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Intent i=getIntent();
-        LoginValue= i.getStringExtra("value1");
+        if(Storage.LoginValue==null)
+        {
+            Storage.LoginValue= i.getStringExtra("value1");
+        }
+
 
         /*
         bt=(Button)findViewById(R.id.btValider);
@@ -138,10 +141,9 @@ public class Navigation extends AppCompatActivity
         {
             try
             {
-                String login=Navigation.LoginValue;
                 Main m = new Main();
-                m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this);
-                list=m.getListEntretien();
+                m.getJSON_Entretien(Route.URL_ENTRETIRN,Storage.LoginValue, Navigation.this);
+                Storage.list=m.getListEntretien();
                 Intent i =new Intent(Navigation.this,Notification.class);
                 startActivity(i);
             }
@@ -157,8 +159,8 @@ public class Navigation extends AppCompatActivity
                 try
                 {
                     Main m = new Main();
-                    m.getJSON_CARRFOUR(Route.URL_CARREFOUR,Navigation.LoginValue, Navigation.this);
-                    list1=m.getListCarrefour();
+                    m.getJSON_CARRFOUR(Route.URL_CARREFOUR,Storage.LoginValue, Navigation.this);
+                    Storage.list1=m.getListCarrefour();
                     Intent i =new Intent(Navigation.this,Search.class);
                     startActivity(i);
                 }
