@@ -65,75 +65,50 @@ public class Navigation extends AppCompatActivity
         {
             Storage.LoginValue= i.getStringExtra("value1");
         }
-
-
-        /*
-        bt=(Button)findViewById(R.id.btValider);
-        bt.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                try
-                {
-                    Main m = new Main();
-                    Toast.makeText(Navigation.this,Route.URL_ENTRETIRN,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this), Toast.LENGTH_SHORT).show();
-                    list=m.getListEntretien();
-                    for(int i=0 ; i<list.size() ; i++)
-                    {
-                        Toast.makeText(Navigation.this,list.get(i).toString(),Toast.LENGTH_SHORT).show();
-                    }
-                    Toast.makeText(Navigation.this,"The value of login est "+Navigation.LoginValue,Toast.LENGTH_SHORT).show();
-                    Intent i =new Intent(Navigation.this,Notification.class);
-
-                    startActivity(i);
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        });
-        */
-
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else
+        {
             super.onBackPressed();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

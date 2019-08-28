@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:text="ID SE: "/>
         <TextView
-            android:id="@+id/txtIDSE"
+            android:id="@+id/txtIDSE1"
             android:text="Liste vide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="ID : "/>
         <TextView
-            android:id="@+id/txtID"
+            android:id="@+id/txtID1"
             android:text="Liste vide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -40,56 +40,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nom de Carrefour : "/>
-            <TextView
-                android:id="@+id/txtNom_Carrefour"
-                android:text="Liste vide"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/txtNom_Carrefour1"
+            android:text="Liste vide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Année : "/>
-            <TextView
-                android:id="@+id/txtAnnee"
-                android:text="Liste vide"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Année : "/>
+        <TextView
+            android:id="@+id/txtAnnee1"
+            android:text="Liste vide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mois : "/>
-            <TextView
-                android:id="@+id/txtMois"
-                android:text="Liste vide"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mois : "/>
+        <TextView
+            android:id="@+id/txtMois1"
+            android:text="Liste vide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Semaine : "/>
-            <TextView
-                android:id="@+id/txtSemaine"
-                android:text="Liste vide"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semaine : "/>
+        <TextView
+            android:id="@+id/txtSemaine1"
+            android:text="Liste vide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/btTest"/>
+        android:id="@+id/btTest1"/>
 </LinearLayout>
