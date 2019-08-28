@@ -17,19 +17,27 @@ public class Search extends AppCompatActivity
 {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        ArrayList<String> contacts = new ArrayList<>();
-        contacts.add("Habib");
-        contacts.add("Laila");
-        contacts.add("Safa");
-        Spinner spinner = findViewById(R.id.spinnerCar);
-        ArrayAdapter<String> adapter =
-              new ArrayAdapter<String>(Search.this,  android.R.layout.simple_spinner_dropdown_item, contacts);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
-
-  spinner.setAdapter(adapter);
+        try
+        {
+            ArrayList<String> c = new ArrayList<>();
+            for (int i = 0; i < Navigation.list1.size(); i++)
+            {
+                c.add(Navigation.list1.get(i).getNom());
+            }
+            Spinner spinner = findViewById(R.id.spinnerCar);
+            ArrayAdapter<String> adapter =
+                    new ArrayAdapter<String>(Search.this, android.R.layout.simple_spinner_dropdown_item, c);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(Search.this,"Error ; "+e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
 
 
     }

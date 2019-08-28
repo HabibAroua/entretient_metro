@@ -7,4 +7,5 @@ public class Route
     public  static final String URL=PROTOCOL+ADDRESS+"/webservice/Public/";
     public  static final String URL_LOGIN=URL+"index.php";
     public  static final String URL_ENTRETIRN=URL+"consulter_entretien.php?login=";
+    public  static final String URL_CARREFOUR=URL+"listCarrefour.php?login=";
 }

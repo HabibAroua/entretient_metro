@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
+import com.example.app_mobile.jakson.JSON2;
 import com.example.app_mobile.jakson.Main;
 import com.example.app_mobile.route.Route;
 
@@ -33,6 +34,7 @@ public class Navigation extends AppCompatActivity
     Button bt;
     public static String LoginValue;
     public static List<JSON1> list;
+    public static List<JSON2> list1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -136,17 +138,11 @@ public class Navigation extends AppCompatActivity
         {
             try
             {
+                String login=Navigation.LoginValue;
                 Main m = new Main();
-                Toast.makeText(Navigation.this,Route.URL_ENTRETIRN,Toast.LENGTH_SHORT).show();
-                Toast.makeText(Navigation.this, m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this), Toast.LENGTH_SHORT).show();
+                m.getJSON_Entretien(Route.URL_ENTRETIRN,Navigation.LoginValue, Navigation.this);
                 list=m.getListEntretien();
-                for(int i=0 ; i<list.size() ; i++)
-                {
-                    Toast.makeText(Navigation.this,list.get(i).toString(),Toast.LENGTH_SHORT).show();
-                }
-                Toast.makeText(Navigation.this,"The value of login est "+Navigation.LoginValue,Toast.LENGTH_SHORT).show();
                 Intent i =new Intent(Navigation.this,Notification.class);
-
                 startActivity(i);
             }
             catch (Exception e)
@@ -158,8 +154,20 @@ public class Navigation extends AppCompatActivity
         else
             if (id == R.id.nav_gallery)
             {
+                try
+                {
+                    Main m = new Main();
+                    m.getJSON_CARRFOUR(Route.URL_CARREFOUR,Navigation.LoginValue, Navigation.this);
+                    list1=m.getListCarrefour();
+                    Intent i =new Intent(Navigation.this,Search.class);
+                    startActivity(i);
+                }
+                catch (Exception e)
+                {
 
-        } else if (id == R.id.nav_slideshow) {
+                }
+            }
+            else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
 

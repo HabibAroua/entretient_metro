@@ -1,6 +1,7 @@
 package com.example.app_mobile.view;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,16 +29,23 @@ public class Notification extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-
-        final   ArrayList<JSON1> Items=new  ArrayList<JSON1> ();
-        for(int i=0 ;i<Navigation.list.size() ; i++)
+        try
         {
-            Items.add(Navigation.list.get(i));
-        }
-        final MyCustomAdapter myadpter= new MyCustomAdapter(Items);
+            final ArrayList<JSON1> Items = new ArrayList<JSON1>();
+            for (int i = 0; i < Navigation.list.size(); i++)
+            {
+                Items.add(Navigation.list.get(i));
+            }
+            final MyCustomAdapter myadpter = new MyCustomAdapter(Items);
 
-        ListView ls=(ListView)findViewById(R.id.list);
-        ls.setAdapter(myadpter);
+            ListView ls = (ListView) findViewById(R.id.list);
+            ls.setAdapter(myadpter);
+        }
+        catch (Exception e)
+        {
+            //Intent i=new Intent(Notification.this,Navigation.class);
+            //startActivity(i);
+        }
     }
 
 

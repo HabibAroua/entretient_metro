@@ -23,7 +23,7 @@ import java.util.Map;
 import org.codehaus.jackson.map.ObjectMapper;
 
 public class Main {
-    public static String res;
+    public static String res,res1;
 
     public void main() {
         /*
@@ -73,9 +73,40 @@ public class Main {
         return Main.res;
     }
 
-    public String convert_json_to_java() throws Exception {
+    public String getJSON_CARRFOUR(String url, String login, Context c) throws Exception
+    {
+        RequestQueue queue = Volley.newRequestQueue(c);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url + login,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        Main.res1 = response;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        queue.add(postRequest);
+        return Main.res1;
+    }
+
+    public String convert_json_to_java() throws Exception
+    {
         ObjectMapper mapper = new ObjectMapper();
-        try {
+        try
+        {
             String url = "http://192.168.1.8/webservice/Public/consulter_entretien.php?login=SafaMiri";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -100,12 +131,28 @@ public class Main {
         }
     }
 
-    public List<JSON1> getListEntretien() {
+    public List<JSON1> getListEntretien()
+    {
         ObjectMapper mapper = new ObjectMapper();
-        try {
+        try
+        {
             List<JSON1> jsons = Arrays.asList(mapper.readValue(Main.res.toString(), JSON1[].class));
             return jsons;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<JSON2> getListCarrefour()
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        try
+        {
+            List<JSON2> jsons = Arrays.asList(mapper.readValue(Main.res1.toString(), JSON2[].class));
+            return jsons;
+        }
+        catch (Exception e)
+        {
             return null;
         }
     }
