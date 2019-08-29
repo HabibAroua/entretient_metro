@@ -48,8 +48,6 @@ public class Search extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(Search.this,"The value is "+spinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(Search.this,"The first char is "+spinner.getSelectedItem().toString().charAt(0),Toast.LENGTH_SHORT).show();
                 try
                 {
                     Main m = new Main();
