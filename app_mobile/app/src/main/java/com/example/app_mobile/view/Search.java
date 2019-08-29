@@ -14,7 +14,6 @@ import com.example.app_mobile.jakson.Main;
 import com.example.app_mobile.route.Route;
 import com.example.app_mobile.storage.Storage;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Search extends AppCompatActivity
 {
@@ -70,6 +69,8 @@ public class Search extends AppCompatActivity
                 catch (Exception e)
                 {
                     System.out.println("Error : "+e.getMessage());
+                    finish();
+
                 }
             }
         });

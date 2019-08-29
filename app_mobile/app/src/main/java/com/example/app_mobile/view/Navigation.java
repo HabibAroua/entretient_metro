@@ -119,8 +119,17 @@ public class Navigation extends AppCompatActivity
                 Main m = new Main();
                 m.getJSON_Entretien(Route.URL_ENTRETIRN,Storage.LoginValue, Navigation.this);
                 Storage.list=m.getListEntretien();
-                Intent i =new Intent(Navigation.this,Notification.class);
-                startActivity(i);
+                if(Storage.list == null)
+                {
+                    Intent i =new Intent(Navigation.this,Notification.class);
+                    startActivity(i);
+                    finish();
+                }
+                else
+                {
+                    Intent i =new Intent(Navigation.this,Notification.class);
+                    startActivity(i);
+                }
             }
             catch (Exception e)
             {
@@ -135,8 +144,17 @@ public class Navigation extends AppCompatActivity
                     Main m = new Main();
                     m.getJSON_CARRFOUR(Route.URL_CARREFOUR,Storage.LoginValue, Navigation.this);
                     Storage.list1=m.getListCarrefour();
-                    Intent i =new Intent(Navigation.this,Search.class);
-                    startActivity(i);
+                    if(Storage.list1 == null)
+                    {
+                        Intent i =new Intent(Navigation.this,Search.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
+                    {
+                        Intent i =new Intent(Navigation.this,Search.class);
+                        startActivity(i);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -145,6 +163,8 @@ public class Navigation extends AppCompatActivity
             }
             else if (id == R.id.nav_slideshow)
             {
+                Intent i =new Intent(Navigation.this,MainActivity.class);
+                startActivity(i);
                 finish();
             }
             else if (id == R.id.nav_share)

@@ -43,6 +43,7 @@ public class Notification extends AppCompatActivity
             Toast.makeText(Notification.this,"please try again",Toast.LENGTH_SHORT).show();
             Intent i=new Intent(Notification.this,Navigation.class);
             startActivity(i);
+            finish();
         }
     }
 
