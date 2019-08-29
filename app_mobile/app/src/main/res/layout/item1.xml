@@ -101,7 +101,6 @@
             android:text="Liste vide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </LinearLayout>
     <EditText
         android:id="@+id/editTextDescription1"
@@ -112,5 +111,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/btTest1"/>
+        android:id="@+id/btTest1"
+        android:text="OK"/>
 </LinearLayout>

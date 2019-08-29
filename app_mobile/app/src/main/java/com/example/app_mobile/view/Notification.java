@@ -93,7 +93,7 @@ public class Notification extends AppCompatActivity
             TextView txtMois =(TextView) view1.findViewById(R.id.txtMois);
             TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine);
             Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerTyp);
-            EditText txtDescription=(EditText)view1.findViewById(R.id.editTextDescription);
+            final EditText txtDescription=(EditText)view1.findViewById(R.id.editTextDescription);
             txtID.setText(Items.get(i).getId());
             txtNom_Carrefour.setText(Items.get(i).getNom_carrefour());
             txtAnnee.setText(Items.get(i).getAnnee());
@@ -111,6 +111,8 @@ public class Notification extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
+                    Toast.makeText(Notification.this,"The value is "+txtDescription.getText().toString(),Toast.LENGTH_SHORT).show();
+                    /*
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
                     emailIntent.setType("message/rfc822");
                     emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{Config.EMAIL});
@@ -118,6 +120,7 @@ public class Notification extends AppCompatActivity
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message text");
                     emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/attachment"));
                     startActivity(emailIntent);
+                    */
                 }
                 });
             return view1;
