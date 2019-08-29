@@ -1,6 +1,5 @@
 package com.example.app_mobile.view;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -94,7 +93,8 @@ public class Notification extends AppCompatActivity
 
             bt=(Button)view1.findViewById(R.id.btTest);
 
-            bt.setOnClickListener(new View.OnClickListener() {
+            bt.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v)
                 {
