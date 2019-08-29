@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.app_mobile.R;
@@ -77,18 +79,26 @@ public class After_search extends Activity
         {
             LayoutInflater linflater =getLayoutInflater();
             View view1=linflater.inflate(R.layout.item1, null);
+            ArrayList<String>types=new ArrayList<>();
+            types.add("Entretien preventif");
+            types.add("Entretien aiguille");
             final TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE1);
             final TextView txtID =(TextView) view1.findViewById(R.id.txtID1);
             final TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour1);
             final TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee1);
             final TextView txtMois =(TextView) view1.findViewById(R.id.txtMois1);
             final TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine1);
+            final Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerType1);
             txtID.setText(Items.get(i).getId());
             txtNom_Carrefour.setText(Items.get(i).getNom_carrefour());
             txtAnnee.setText(Items.get(i).getAnnee());
             txtMois.setText(Items.get(i).getMois());
             txtSemaine.setText(Items.get(i).getSemaine());
             txtIDSE.setText(Items.get(i).getIdEn_Se());
+            ArrayAdapter<String> adapter =
+                    new ArrayAdapter<String>(After_search.this, android.R.layout.simple_spinner_dropdown_item, types);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
             bt=(Button)view1.findViewById(R.id.btTest1);
 
             bt.setOnClickListener(new View.OnClickListener()
