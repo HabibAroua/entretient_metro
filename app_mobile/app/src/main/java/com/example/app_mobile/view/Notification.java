@@ -2,6 +2,7 @@ package com.example.app_mobile.view;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
+import com.example.app_mobile.mailing.Config;
 import com.example.app_mobile.storage.Storage;
 import java.util.ArrayList;
 
@@ -94,13 +96,16 @@ public class Notification extends AppCompatActivity
 
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "Hello " + txtID.getText().toString(), Toast.LENGTH_SHORT).show();
-                    for (int i = 0; i < Storage.list.size(); i++)
-                    {
-                        Toast.makeText(getApplicationContext(), "The value is " + Storage.list.get(i), Toast.LENGTH_SHORT).show();
-                    }
-                    }
+                public void onClick(View v)
+                {
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setType("message/rfc822");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{Config.EMAIL});
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email subject");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message text");
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/attachment"));
+                    startActivity(emailIntent);
+                }
                 });
             return view1;
 
