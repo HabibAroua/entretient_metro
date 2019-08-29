@@ -124,9 +124,8 @@ public class Navigation extends AppCompatActivity
             }
             catch (Exception e)
             {
-
+                System.out.println("Error : "+e.getMessage());
             }
-            // Handle the camera action
         }
         else
             if (id == R.id.nav_gallery)
@@ -141,7 +140,7 @@ public class Navigation extends AppCompatActivity
                 }
                 catch (Exception e)
                 {
-
+                    System.out.println("Error : "+e.getMessage());
                 }
             }
             else if (id == R.id.nav_slideshow)

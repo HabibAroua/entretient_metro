@@ -8,6 +8,6 @@ import java.util.List;
 public class Storage
 {
     public static String LoginValue;
-    public static List<JSON1> list;
+    public static List<JSON1> list,list2;
     public static List<JSON2> list1;
 }

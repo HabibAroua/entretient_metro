@@ -12,11 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.storage.Storage;
-
 import java.util.ArrayList;
 
 public class Notification extends AppCompatActivity
@@ -79,7 +77,7 @@ public class Notification extends AppCompatActivity
         {
             LayoutInflater linflater =getLayoutInflater();
             View view1=linflater.inflate(R.layout.item, null);
-
+            final TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE);
             final TextView txtID =(TextView) view1.findViewById(R.id.txtID);
             final TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour);
             final TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee);
@@ -90,6 +88,7 @@ public class Notification extends AppCompatActivity
             txtAnnee.setText(Items.get(i).getAnnee());
             txtMois.setText(Items.get(i).getMois());
             txtSemaine.setText(Items.get(i).getSemaine());
+            txtIDSE.setText(Items.get(i).getIdEn_Se());
 
             bt=(Button)view1.findViewById(R.id.btTest);
 
@@ -97,10 +96,10 @@ public class Notification extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "Hello " + txtID.getText().toString(), Toast.LENGTH_SHORT).show();
-                    for (int i = 0; i < Storage.list.size(); i++) {
+                    for (int i = 0; i < Storage.list.size(); i++)
+                    {
                         Toast.makeText(getApplicationContext(), "The value is " + Storage.list.get(i), Toast.LENGTH_SHORT).show();
                     }
-
                     }
                 });
             return view1;

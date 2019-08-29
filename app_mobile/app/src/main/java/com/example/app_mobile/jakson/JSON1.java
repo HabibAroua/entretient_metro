@@ -2,11 +2,22 @@ package com.example.app_mobile.jakson;
 
 public class JSON1
 {
+    private String idEn_Se;
     private String id;
     private String nom_carrefour;
     private String annee;
     private String mois;
     private String semaine;
+
+    public void setIdEn_Se(String idEn_Se)
+    {
+        this.idEn_Se=idEn_Se;
+    }
+
+    public String getIdEn_Se()
+    {
+        return this.idEn_Se;
+    }
 
     public void setId(String id)
     {
@@ -60,8 +71,9 @@ public class JSON1
     }
 
 
-    public JSON1(String id, String nom_carrefour, String annee, String mois, String semaine)
+    public JSON1(String idEn_Se,String id, String nom_carrefour, String annee, String mois, String semaine)
     {
+        this.idEn_Se=idEn_Se;
         this.id = id;
         this.nom_carrefour = nom_carrefour;
         this.annee = annee;

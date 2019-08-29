@@ -29,9 +29,9 @@ public class After_search extends Activity
         try
         {
             final ArrayList<JSON1> Items = new ArrayList<JSON1>();
-            for (int i = 0; i < Storage.list.size(); i++)
+            for (int i = 0; i < Storage.list2.size(); i++)
             {
-                Items.add(Storage.list.get(i));
+                Items.add(Storage.list2.get(i));
             }
             final MyCustomAdapter myadpter = new MyCustomAdapter(Items);
 
@@ -41,8 +41,8 @@ public class After_search extends Activity
         catch (Exception e)
         {
             Toast.makeText(After_search.this,"please try again",Toast.LENGTH_SHORT).show();
-           // Intent i=new Intent(After_search.this,Navigation.class);
-            //startActivity(i);
+            Intent i=new Intent(After_search.this,Navigation.class);
+            startActivity(i);
         }
     }
 
@@ -79,7 +79,7 @@ public class After_search extends Activity
         {
             LayoutInflater linflater =getLayoutInflater();
             View view1=linflater.inflate(R.layout.item1, null);
-
+            final TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE1);
             final TextView txtID =(TextView) view1.findViewById(R.id.txtID1);
             final TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour1);
             final TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee1);
@@ -90,7 +90,7 @@ public class After_search extends Activity
             txtAnnee.setText(Items.get(i).getAnnee());
             txtMois.setText(Items.get(i).getMois());
             txtSemaine.setText(Items.get(i).getSemaine());
-
+            txtIDSE.setText(Items.get(i).getIdEn_Se());
             bt=(Button)view1.findViewById(R.id.btTest1);
 
             bt.setOnClickListener(new View.OnClickListener()
@@ -103,7 +103,6 @@ public class After_search extends Activity
                     {
                         Toast.makeText(getApplicationContext(), "The value is " + Storage.list.get(i), Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
             return view1;
