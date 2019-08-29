@@ -1,5 +1,6 @@
 package com.example.app_mobile.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +16,22 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.mailing.Config;
+import com.example.app_mobile.route.Route;
 import com.example.app_mobile.storage.Storage;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Notification extends AppCompatActivity
 {
@@ -86,13 +98,13 @@ public class Notification extends AppCompatActivity
             ArrayList<String>types=new ArrayList<>();
             types.add("Entretien preventif");
             types.add("Entretien aiguille");
-            TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE);
+            final TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE);
             TextView txtID =(TextView) view1.findViewById(R.id.txtID);
-            TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour);
+            final TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour);
             TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee);
             TextView txtMois =(TextView) view1.findViewById(R.id.txtMois);
             TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine);
-            Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerTyp);
+            final Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerTyp);
             final EditText txtDescription=(EditText)view1.findViewById(R.id.editTextDescription);
             txtID.setText(Items.get(i).getId());
             txtNom_Carrefour.setText(Items.get(i).getNom_carrefour());
@@ -111,16 +123,59 @@ public class Notification extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-                    Toast.makeText(Notification.this,"The value is "+txtDescription.getText().toString(),Toast.LENGTH_SHORT).show();
-                    /*
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setType("message/rfc822");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{Config.EMAIL});
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email subject");
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message text");
-                    emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/attachment"));
-                    startActivity(emailIntent);
-                    */
+                    if (txtDescription.getText().equals(""))
+                    {
+                        txtDescription.setError("Description vide");
+                    }
+                    else
+                    {
+                        RequestQueue queue = Volley.newRequestQueue(Notification.this);
+                        StringRequest postRequest = new StringRequest(Request.Method.POST, Route.URL_EFFECTUE,
+                                new Response.Listener<String>()
+                                {
+                                    @Override
+                                    public void onResponse(String response)
+                                    {
+                                        Date d=new Date();
+                                        Toast.makeText(Notification.this, response, Toast.LENGTH_SHORT).show();
+                                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                                        emailIntent.setType("message/rfc822");
+                                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{Config.EMAIL});
+                                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Information sur entretien");
+                                        emailIntent.putExtra
+                                                (
+                                                        Intent.EXTRA_TEXT,
+                                                                "Carrefour : "+txtNom_Carrefour.getText().toString()+"\n" +
+                                                                 "Type d'entretien : "+spinner.getSelectedItem().toString()+"\n"+
+                                                                    "Description : "+txtDescription.getText().toString()+"\n" +
+                                                                            "Date : "+d.toString()+""
+                                                );
+                                        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/attachment"));
+                                        startActivity(emailIntent);
+                                        finish();
+                                    }
+                                },
+                                new Response.ErrorListener()
+                                {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error)
+                                    {
+                                        Toast.makeText(Notification.this, "Try again", Toast.LENGTH_LONG).show();
+                                        //progressDialog.dismiss();
+
+                                    }
+                                }
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams()
+                            {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("id", txtIDSE.getText().toString());
+                                return params;
+                            }
+                        };
+                        queue.add(postRequest);
+                    }
                 }
                 });
             return view1;

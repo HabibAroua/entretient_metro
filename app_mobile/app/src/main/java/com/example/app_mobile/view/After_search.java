@@ -2,6 +2,7 @@ package com.example.app_mobile.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,22 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
+import com.example.app_mobile.mailing.Config;
+import com.example.app_mobile.route.Route;
 import com.example.app_mobile.storage.Storage;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class After_search extends Activity
 {
@@ -109,11 +122,60 @@ public class After_search extends Activity
                 @Override
                 public void onClick(View v)
                 {
-                    Toast.makeText(getApplicationContext(), "Hello " + txtID.getText().toString(), Toast.LENGTH_SHORT).show();
-                    for (int i = 0; i < Storage.list.size(); i++)
+                    if(txtDescription.getText().equals(""))
                     {
-                        Toast.makeText(getApplicationContext(), "The value is " + Storage.list.get(i), Toast.LENGTH_SHORT).show();
+                        txtDescription.setError("Description vide");
                     }
+                    else
+                    {
+                        RequestQueue queue = Volley.newRequestQueue(After_search.this);
+                        StringRequest postRequest = new StringRequest(Request.Method.POST, Route.URL_EFFECTUE,
+                                new Response.Listener<String>()
+                                {
+                                    @Override
+                                    public void onResponse(String response)
+                                    {
+                                        Date d=new Date();
+                                        Toast.makeText(After_search.this, response, Toast.LENGTH_SHORT).show();
+                                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                                        emailIntent.setType("message/rfc822");
+                                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{Config.EMAIL});
+                                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Information sur entretien");
+                                        emailIntent.putExtra
+                                                (
+                                                        Intent.EXTRA_TEXT,
+                                                        "Carrefour : "+txtNom_Carrefour.getText().toString()+"\n" +
+                                                                "Type d'entretien : "+spinner.getSelectedItem().toString()+"\n"+
+                                                                "Description : "+txtDescription.getText().toString()+"\n" +
+                                                                "Date : "+d.toString()+""
+                                                );
+                                        emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://path/attachment"));
+                                        startActivity(emailIntent);
+                                        finish();
+                                    }
+                                },
+                                new Response.ErrorListener()
+                                {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error)
+                                    {
+                                        Toast.makeText(After_search.this, "Try again", Toast.LENGTH_LONG).show();
+                                        //progressDialog.dismiss();
+
+                                    }
+                                }
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams()
+                            {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("id", txtIDSE.getText().toString());
+                                return params;
+                            }
+                        };
+                        queue.add(postRequest);
+                    }
+
                 }
             });
             return view1;
