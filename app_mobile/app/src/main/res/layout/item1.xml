@@ -103,6 +103,12 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+    <EditText
+        android:id="@+id/editTextDescription1"
+        android:text="Hello world"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:singleLine="true"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class Notification extends AppCompatActivity
             final MyCustomAdapter myadpter = new MyCustomAdapter(Items);
 
             ListView ls = (ListView) findViewById(R.id.list);
+            ls.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS); //textview is not emutable
             ls.setAdapter(myadpter);
         }
         catch (Exception e)
@@ -84,13 +86,14 @@ public class Notification extends AppCompatActivity
             ArrayList<String>types=new ArrayList<>();
             types.add("Entretien preventif");
             types.add("Entretien aiguille");
-            final TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE);
-            final TextView txtID =(TextView) view1.findViewById(R.id.txtID);
-            final TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour);
-            final TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee);
-            final TextView txtMois =(TextView) view1.findViewById(R.id.txtMois);
-            final TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine);
-            final Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerTyp);
+            TextView txtIDSE=(TextView)view1.findViewById(R.id.txtIDSE);
+            TextView txtID =(TextView) view1.findViewById(R.id.txtID);
+            TextView txtNom_Carrefour =(TextView) view1.findViewById(R.id.txtNom_Carrefour);
+            TextView txtAnnee =(TextView) view1.findViewById(R.id.txtAnnee);
+            TextView txtMois =(TextView) view1.findViewById(R.id.txtMois);
+            TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine);
+            Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerTyp);
+            EditText txtDescription=(EditText)view1.findViewById(R.id.editTextDescription);
             txtID.setText(Items.get(i).getId());
             txtNom_Carrefour.setText(Items.get(i).getNom_carrefour());
             txtAnnee.setText(Items.get(i).getAnnee());

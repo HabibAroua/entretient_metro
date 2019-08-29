@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class After_search extends Activity
             final MyCustomAdapter myadpter = new MyCustomAdapter(Items);
 
             ListView ls = (ListView) findViewById(R.id.list1);
+            ls.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
             ls.setAdapter(myadpter);
         }
         catch (Exception e)
@@ -89,6 +91,7 @@ public class After_search extends Activity
             final TextView txtMois =(TextView) view1.findViewById(R.id.txtMois1);
             final TextView txtSemaine =(TextView) view1.findViewById(R.id.txtSemaine1);
             final Spinner spinner=(Spinner)view1.findViewById(R.id.spinnerType1);
+            final EditText txtDescription=(EditText)view1.findViewById(R.id.editTextDescription1);
             txtID.setText(Items.get(i).getId());
             txtNom_Carrefour.setText(Items.get(i).getNom_carrefour());
             txtAnnee.setText(Items.get(i).getAnnee());
