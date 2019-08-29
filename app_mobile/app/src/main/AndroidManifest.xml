@@ -17,7 +17,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.After_search"></activity>
         <activity android:name=".view.Search" />
-        <activity android:name=".view.TestMail" />
         <activity android:name=".view.Notification" />
         <activity
             android:name=".view.Navigation"
