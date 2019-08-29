@@ -11,11 +11,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.app_mobile.R;
 import com.example.app_mobile.jakson.JSON1;
 import com.example.app_mobile.storage.Storage;
-
 import java.util.ArrayList;
 
 public class After_search extends Activity

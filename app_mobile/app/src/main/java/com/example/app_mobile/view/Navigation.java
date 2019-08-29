@@ -145,7 +145,7 @@ public class Navigation extends AppCompatActivity
             }
             else if (id == R.id.nav_slideshow)
             {
-
+                finish();
             }
             else if (id == R.id.nav_share)
             {
