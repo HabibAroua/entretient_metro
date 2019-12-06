@@ -2,7 +2,6 @@ package com.example.app_mobile.jakson;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -10,7 +9,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.app_mobile.view.Navigation;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -19,13 +17,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class Main {
+public class Main 
+{
     public static String res,res1;
 
-    public void main() {
+    public void main() 
+    {
         /*
         try
         {
@@ -44,21 +43,25 @@ public class Main {
         */
     }
 
-    public String getJSON_Entretien(String url, String login, Context c) throws Exception {
+    public String getJSON_Entretien(String url, String login, Context c) throws Exception 
+    {
         RequestQueue queue = Volley.newRequestQueue(c);
         StringRequest postRequest = new StringRequest(Request.Method.POST, url + login,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response) 
+                    {
                         Main.res = response;
                         /*
 
                          */
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener() 
+                                                      {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error) 
+                    {
 
                     }
                 }
@@ -138,7 +141,9 @@ public class Main {
         {
             List<JSON1> jsons = Arrays.asList(mapper.readValue(Main.res.toString(), JSON1[].class));
             return jsons;
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             return null;
         }
     }
