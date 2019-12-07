@@ -1,7 +1,6 @@
 package com.example.app_mobile.mailing;
 
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -85,23 +84,11 @@ public class SendEmail
 
     private void defProp()
     {
-
-
         this.props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         this.props.put("mail.smtp.starttls.enable", "true");
         this.props.put("mail.smtp.auth", "true");
         this.props.put("mail.smtp.host", "smtp.gmail.com");
         this.props.put("mail.smtp.port", "587"); //465 /888
-
-        /*
-        this.props.put("mail.smtp.host", "smtp.gmail.com");
-        this.props.put("mail.smtp.socketFactory.port", "587");
-        this.props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        this.props.put("mail.smtp.auth", "true");
-        this.props.put("mail.smtp.port", "587");
-        this.props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        */
-
     }
 
     public Boolean send()
@@ -113,12 +100,11 @@ public class SendEmail
             final String password = this.myPassword;
             Session session = Session.getInstance(props, new javax.mail.Authenticator()
             {
-                protected PasswordAuthentication getPasswordAuthentication() {
+                protected PasswordAuthentication getPasswordAuthentication() 
+                {
                     return new PasswordAuthentication(username, password);
                 }
             });
-
-
             try
             {
                 Message message = new MimeMessage(session);
@@ -135,7 +121,6 @@ public class SendEmail
             catch (/*MessagingException e */Exception e)
             {
                 throw new RuntimeException(e);
-
             }
         }
         catch (Exception e)
