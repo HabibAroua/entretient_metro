@@ -139,9 +139,8 @@ public class Main
         ObjectMapper mapper = new ObjectMapper();
         try
         {
-            List<JSON1> jsons = Arrays.asList(mapper.readValue(Main.res.toString(), JSON1[].class));
-            return jsons;
-        } 
+            return Arrays.asList(mapper.readValue(Main.res.toString(), JSON1[].class));
+        }
         catch (Exception e) 
         {
             return null;
