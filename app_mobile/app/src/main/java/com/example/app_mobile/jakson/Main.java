@@ -52,9 +52,6 @@ public class Main
                     public void onResponse(String response) 
                     {
                         Main.res = response;
-                        /*
-
-                         */
                     }
                 },
                 new Response.ErrorListener() 
